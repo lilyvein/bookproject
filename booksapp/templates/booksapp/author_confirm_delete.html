@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="row mt-4">
+        <div class="col-6 mx-auto">
+            <div class="card mb-3">   {# jätab 3 ühikut tühja ruumi, rohkem ruumi coponents/card - boostrampi lehel#}
+                <div class="card-header text-bg-danger">
+                    Delete author {{ author.fullname}},
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-info" role="alert">
+                        Wherever this author {{ author.fullname }} is used, it is replaced by NULL.
+                    </div>
+                    <p>Are you sure you want to delete this author {{ author.fullname }}</p>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <input type="submit" value="Confirm delete" class="btn btn-danger col-4">
+                    </form>
+                </div>
+            </div>
+            <a href="{% url 'booksapp:author_list' %}">List of authors</a>
+        </div>
+    </div>
+
+{% endblock %}

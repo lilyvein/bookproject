@@ -13,11 +13,13 @@
                 <tbody>
                     {% for book in object_list %}
                         <tr>
-                            <td>{{ book.book_info }}</td>
+                            <td>{{ book.title }}</td>   {# title kui oleme autori ära kustutanud siis info lünklik, detaili enam kasutada ei saa läheb katki #}
                             <td class="text-center">
-                                <a href="{% url 'booksapp:book_update' pk=book.id%}">Update</a>
-                                <a href="" class="text-danger">Delete</a>
-                                <a href="" class="text-warning">Detail</a>
+                                {% if user.is_authenticated %}
+                                    <a href="{% url 'booksapp:book_update' pk=book.id%}">Update</a>
+                                    <a href="{% url 'booksapp:book_delete' pk=book.id %}" class="text-danger">Delete</a>
+                                {% endif %}
+                                <a href="{% url 'booksapp:book_detail' pk=book.id %}" class="text-warning">Detail</a>
                             </td>
 
                         </tr>
